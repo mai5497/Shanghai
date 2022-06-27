@@ -1,0 +1,115 @@
+//----- インクルード部 -----
+#include "Game.h"
+#include "Scene.h"
+
+#include "Sound.h"
+
+#include "bg.h"
+#include "Majanpai.h"
+#include "timer.h"
+#include "UI.h"
+
+
+//------------------------------------------------------------------------------------
+//
+//				初期化
+//
+//------------------------------------------------------------------------------------
+HRESULT InitGame() {
+	HRESULT hr = S_OK;
+
+	// 麻雀牌初期化
+	hr = InitMajanpai();
+	if (FAILED(hr)) {
+		MessageBox(GetMainWnd(), _T("麻雀牌初期化失敗"), NULL, MB_OK);
+		return hr;
+	}
+
+	// 背景初期化
+	hr = InitBG();
+	if (FAILED(hr)) {
+		MessageBox(GetMainWnd(), _T("背景初期化失敗"), NULL, MB_OK);
+		return hr;
+	}
+
+	// タイマー
+	hr = InitTimer();
+	if (FAILED(hr)) {
+		MessageBox(GetMainWnd(), _T("タイマー初期化失敗"), NULL, MB_OK);
+		return hr;
+	}
+
+	// UI
+	hr = InitUI();
+	if (FAILED(hr)) {
+		MessageBox(GetMainWnd(), _T("UI初期化失敗"), NULL, MB_OK);
+		return hr;
+	}
+
+	// BGM再生
+	CSound::Play(BGM_001);
+
+
+	return hr;
+}
+
+
+//------------------------------------------------------------------------------------
+//
+//				終了
+//
+//------------------------------------------------------------------------------------
+void UninitGame() {
+	// BGM再生停止
+	CSound::Stop(BGM_001);
+
+	// 背景終了処理
+	UninitBG();
+
+	// 麻雀牌終了処理
+	UninitMajanpai();
+
+	// タイマー終了処理
+	UninitTimer();
+
+	// UI終了処理
+	UninitUI();
+}
+
+
+//------------------------------------------------------------------------------------
+//
+//				更新
+//
+//------------------------------------------------------------------------------------
+void UpdateGame() {
+	// 背景描画更新
+	UpdateBG();
+
+	// タイマー更新
+	UpdateTimer();
+
+	// 麻雀牌更新
+	UpdateMajanpai();
+}
+
+
+//------------------------------------------------------------------------------------
+//
+//				描画
+//
+//------------------------------------------------------------------------------------
+void DrawGame() {
+	// 背景描画
+	DrawBG();
+
+	// タイマー描画
+	DrawTimer();
+
+	// UI描画
+	DrawUI();
+
+	// 麻雀牌描画
+	DrawMajanpai();
+
+}
