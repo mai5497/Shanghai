@@ -1,3 +1,10 @@
+//************************************************************************************
+// 
+// テクスチャ[Texture.cpp]
+// 編集者：伊地田真衣
+// 
+//************************************************************************************
+//-------------------- インクルード部 --------------------
 #define _CRT_SECURE_NO_WARNINGS
 #include <memory.h>
 #include <stdlib.h>
@@ -6,8 +13,11 @@
 #pragma comment(lib, "DirectXTex")
 
 using namespace DirectX;
-
+//====================================================================================
+// 
 // メモリから生成
+//
+//====================================================================================
 HRESULT CreateTextureFromMemory(_In_ ID3D11Device* d3dDevice,
 	_In_bytecount_(wicDataSize) const uint8_t* wicData,
 	_In_ size_t wicDataSize,
@@ -30,7 +40,11 @@ HRESULT CreateTextureFromMemory(_In_ ID3D11Device* d3dDevice,
 	return CreateShaderResourceView(d3dDevice, image.GetImages(), image.GetImageCount(), meta, textureView);
 }
 
+//====================================================================================
+// 
 // ファイルから生成
+//
+//====================================================================================
 HRESULT CreateTextureFromFile(_In_ ID3D11Device* d3dDevice,
 	_In_z_ const wchar_t* szFileName,
 	_Out_opt_ ID3D11ShaderResourceView** textureView,
