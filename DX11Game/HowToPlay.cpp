@@ -1,4 +1,11 @@
-//----- インクルード部 -----
+//************************************************************************************
+// 
+// 遊び方処理[HowToPlay.cpp]
+// 編集者：伊地田真衣
+// 
+//************************************************************************************
+
+//-------------------- インクルード部 --------------------
 #include "HowToPlay.h"
 #include "polygon.h"
 #include "Texture.h"
@@ -7,7 +14,7 @@
 #include "Sound.h"
 
 
-//----- 定数定義 -----
+//-------------------- 定数定義 --------------------
 #define BG_POS_X		0.0f
 #define BG_POS_Y		0.0f
 #define BG_WIDTH		SCREEN_WIDTH
@@ -25,7 +32,7 @@ enum TEXNUM {
 	MAX_TEXTURE,
 };
 
-//----- グローバル変数宣言 -----
+//-------------------- グローバル変数定義 --------------------
 static LPCWSTR g_pszTexFName[MAX_TEXTURE] = {
 	L"data/texture/bg000.jpg",
 	L"data/texture/howtoplay.png",
@@ -34,6 +41,11 @@ static LPCWSTR g_pszTexFName[MAX_TEXTURE] = {
 static ID3D11ShaderResourceView *g_pTexture[MAX_TEXTURE];
 
 
+//====================================================================================
+//
+//				初期化
+//
+//====================================================================================
 HRESULT	InitHowToPlay() {
 	HRESULT hr = S_OK;
 	ID3D11Device *pDevice = GetDevice();
@@ -49,6 +61,12 @@ HRESULT	InitHowToPlay() {
 
 	return hr;
 }
+
+//====================================================================================
+//
+//				終了
+//
+//====================================================================================
 void	UninitHowToPlay() {
 	// BGM再生停止
 	CSound::Stop(BGM_000);
@@ -57,6 +75,12 @@ void	UninitHowToPlay() {
 		SAFE_RELEASE(g_pTexture[i]);
 	}
 }
+
+//====================================================================================
+//
+//				更新
+//
+//====================================================================================
 void	UpdateHowToPlay() {
 	//クリックまたは[Enter]押下
 	if (GetMouseRelease(MOUSEBUTTON_L) || GetKeyRelease(VK_RETURN)) {
@@ -66,6 +90,12 @@ void	UpdateHowToPlay() {
 		return;
 	}
 }
+
+//====================================================================================
+//
+//				描画
+//
+//====================================================================================
 void	DrawHowToPlay() {
 	ID3D11DeviceContext *pDC = GetDeviceContext();
 	SetPolygonSize(BG_WIDTH, BG_HEIGHT);

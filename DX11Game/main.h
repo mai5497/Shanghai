@@ -1,11 +1,13 @@
-//=============================================================================
-//
-// サンプル処理 [main.h]
-// Author : AKIRA TANAKA
-//
-//=============================================================================
-#pragma once
+//************************************************************************************
+// 
+// メイン[main.h]
+// 編集者：伊地田真衣
+// 
+//************************************************************************************
+#ifndef __MAIN_H__
+#define __MAIN_H__
 
+//-------------------- インクルード部 --------------------
 #include <windows.h>
 #include <tchar.h>
 #include <mmsystem.h>
@@ -16,10 +18,11 @@
 
 #include "resource.h"
 
+//-------------------- 名前空間定義 --------------------
 // 本来はヘッダに書かない方が良い
 using namespace DirectX;
 
-// マクロ定義
+//-------------------- 定数マクロ定義 --------------------
 #ifndef SAFE_RELEASE
 #define SAFE_RELEASE(x) {if(x){(x)->Release();x=nullptr;}}
 #endif
@@ -38,6 +41,7 @@ using namespace DirectX;
 #define	NUM_VERTEX		(4)					// 頂点数
 #define	NUM_POLYGON		(2)					// ポリゴン数
 
+//-------------------- 構造体定義 --------------------
 // 頂点フォーマット( 頂点座標[2D] / 反射光 / テクスチャ座標 )
 typedef struct {
 	XMFLOAT3 vtx;		// 頂点座標
@@ -45,8 +49,10 @@ typedef struct {
 	XMFLOAT2 tex;		// テクスチャ座標
 } VERTEX_2D;
 
-// プロトタイプ宣言
+//-------------------- プロトタイプ宣言 --------------------
 HWND GetMainWnd();
 HINSTANCE GetInstance();
 ID3D11Device* GetDevice();
 ID3D11DeviceContext* GetDeviceContext();
+
+#endif

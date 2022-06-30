@@ -1,7 +1,12 @@
-// CSoundクラス定義 (Sound.h)
-//
-#pragma once
-
+//************************************************************************************
+// 
+// サウンド[Sound.h]
+// 編集者：伊地田真衣
+// 
+//************************************************************************************
+#ifndef __SOUND_H__
+#define __SOUND_H__
+//-------------------- インクルード部 --------------------
 #include "SoundData.h"
 
 #define WIN32_LEAN_AND_MEAN
@@ -23,7 +28,7 @@
 #include <mfapi.h>
 #include <mfreadwrite.h>
 
-//-------- マクロ
+//-------------------- 定数定義 --------------------
 #ifdef COMPTR
 #undef COMPTR
 #endif
@@ -48,6 +53,7 @@ enum SoundStatus {
 	MAX_SOUNDSTATUS
 };
 
+//-------------------- クラス定義--------------------
 // BGMクラス
 struct CSoundStream
 {
@@ -127,3 +133,5 @@ public:
 	static void SetVolume(eSE se, float fVol);
 	static float GetVolume(eSE se);
 };
+
+#endif

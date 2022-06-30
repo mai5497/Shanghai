@@ -1,14 +1,14 @@
-//=============================================================================
-//
-// ポリゴン処理 [polygon.h]
-// Author : HIROHIKO HAMAYA
-//
-//=============================================================================
-#pragma once
+//************************************************************************************
+// 
+// ポリゴン[polygon.h]
+// 編集者：伊地田真衣
+// 
+//************************************************************************************
+#ifndef __POLYGON_H__
+#define __POLYGON_H__
+//-------------------- インクルード部 --------------------
 #include "main.h"
-//*****************************************************************************
-// プロトタイプ宣言
-//*****************************************************************************
+//-------------------- プロトタイプ宣言 --------------------
 HRESULT InitPolygon(ID3D11Device* pDevice);
 void UninitPolygon(void);
 void UpdatePolygon(void);
@@ -21,3 +21,5 @@ void SetPolygonUV(float fU, float fV);
 void SetPolygonFrameSize(float fWidth, float fHeight);
 void SetPolygonColor(float fRed, float fGreen, float fBlue);
 void SetPolygonAlpha(float fAlpha);
+
+#endif
